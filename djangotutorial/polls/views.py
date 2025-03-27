@@ -1,18 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Product
 
+
+# Стандартное Django-представление (можно оставить)
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
-# Create your views here.
 
+# DRF-представления для новых моделей
 from rest_framework import viewsets
-from .models import Question, Choice
-from .serializers import QuestionSerializer, ChoiceSerializer
+from .models import Product, Order  # Импортируем новые модели
+from .serializers import ProductSerializer, OrderSerializer  # И новые сериализаторы
 
-class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
+def product_list_html(request):
+    products = Product.objects.all()
+    return render(request, 'polls/product_list.html', {'products': products})
 
-class ChoiceViewSet(viewsets.ModelViewSet):
-    queryset = Choice.objects.all()
-    serializer_class = ChoiceSerializer
+class ProductViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для продуктов
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для заказов
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

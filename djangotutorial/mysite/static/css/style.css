@@ -1,0 +1,10 @@
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

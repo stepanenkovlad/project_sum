@@ -1,7 +1,7 @@
 from django.urls import path
-
-from . import views
+from .views import product_list_html, index  # Добавили index
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path('', index, name='index'),  # Для /polls/
+    path('products/', product_list_html, name='product-list'),  # Для /polls/products/
 ]

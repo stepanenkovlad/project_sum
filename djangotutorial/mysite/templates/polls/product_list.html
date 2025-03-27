@@ -1,0 +1,14 @@
+{% extends "polls/base.html" %}  <!-- Убедитесь в правильном пути -->
+
+{% block title %}Список товаров{% endblock %}
+
+{% block content %}
+<h1>Наши товары</h1>
+{% for product in products %}
+<div class="product-card">
+    <h2>{{ product.name }}</h2>
+    <p class="price">{{ product.price }} руб.</p>
+    <p>{{ product.description|default:"Нет описания" }}</p>
+</div>
+{% endfor %}
+{% endblock %}

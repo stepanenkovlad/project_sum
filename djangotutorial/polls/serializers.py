@@ -1,14 +1,12 @@
 from rest_framework import serializers
-from .models import Question, Choice
+from .models import Product, Order
 
-class ChoiceSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Choice
-        fields = ['id', 'choice_text', 'votes']
+        model = Product
+        fields = '__all__'
 
-class QuestionSerializer(serializers.ModelSerializer):
-    choices = ChoiceSerializer(many=True, read_only=True)  # Вложенный сериализатор для связанных Choice
-
+class OrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Question
-        fields = ['id', 'question_text', 'pub_date', 'choices']
+        model = Order
+        fields = '__all__'
