@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .serializers import ProductSerializer, OrderSerializer
 from .models import Product
 
 
@@ -17,15 +18,9 @@ def product_list_html(request):
     return render(request, 'polls/product_list.html', {'products': products})
 
 class ProductViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet для продуктов
-    """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 class OrderViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet для заказов
-    """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
